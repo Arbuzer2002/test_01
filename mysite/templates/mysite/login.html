@@ -1,0 +1,11 @@
+<form method="POST" action="{% url 'login' %}">
+    {% csrf_token %}
+    <label for="username">Имя пользователя:</label>
+    <input type="text" id="username" name="username" required>
+    <label for="password">Пароль:</label>
+    <input type="password" id="password" name="password" required>
+    {% if error_message %}
+        <p>{{ error_message }}</p>
+    {% endif %}
+    <button type="submit">Войти</button>
+</form>
