@@ -1,8 +1,15 @@
 from django.contrib import admin
-from .models import Product
+from .models import Product, Category, Material, Color, Gender, Size
+
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     list_display = ('name', 'category', 'price')
     search_fields = ('name', 'category')
-# Register your models here.
+
+
+admin.site.register(Category)
+admin.site.register(Material)
+admin.site.register(Color)
+admin.site.register(Gender)
+admin.site.register(Size)
