@@ -1,0 +1,25 @@
+# If you are using PyCharm #
+.idea/
+
+# Python #
+*.py[cod]
+*$py.class
+
+# Environments
+web/worker/worker/secrets.ini
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+linuxvenv/
+
+# Visual Studio Code #
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+history
