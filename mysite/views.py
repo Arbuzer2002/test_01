@@ -1,16 +1,21 @@
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
+from .models import Product
 from django.http import HttpResponse
-# Create your views here.
+
 
 def index(request):
     return render(request, 'mysite/index.html')
 
+
 def shop(request):
-    return render(request, 'mysite/shop.html')
+    products = Product.objects.all()
+    return render(request, 'mysite/shop.html', {'products': products})
+
 
 def page(request):
     return render(request, 'mysite/tast.html')
+
 
 def login_view(request):
     if request.method == 'POST':
@@ -26,9 +31,11 @@ def login_view(request):
     else:
         return render(request, 'mysite/login.html')
 
+
 def logout_view(request):
     logout(request),
     return redirect('')  # Замените 'home' на URL вашей домашней страницы
+
 
 def my_view(request):
     # Сохранение значения переменной сеанса
