@@ -1,8 +1,6 @@
-from django.contrib.auth import authenticate, login, logout
-from django.db.models import Sum
-from django.shortcuts import render, redirect, get_object_or_404
-from .models import Product
-from django.http import HttpResponse
+from django.db.models import Sum, Q
+from django.shortcuts import render, get_object_or_404
+from .models import Product, Category, Brand
 
 
 def home(request):
@@ -10,8 +8,45 @@ def home(request):
 
 
 def shop(request):
+    sort_by = request.GET.get('sort_by', 'default')
+    search_query = request.GET.get('search', '')
+
     products = Product.objects.all()
-    return render(request, 'mysite/shop.html', {'products': products})
+    if search_query:
+        products = products.filter(Q(name__icontains=search_query) | Q(description__icontains=search_query))
+
+    if sort_by == 'name_asc':
+        products = products.order_by('name')
+    elif sort_by == 'name_desc':
+        products = products.order_by('-name')
+    elif sort_by == 'price_asc':
+        products = products.order_by('price')
+    elif sort_by == 'price_desc':
+        products = products.order_by('-price')
+
+    category_name = request.GET.get('category', 'all')
+    if category_name == "all":
+        products = products.all()
+    else:
+        products = products.filter(category__name=category_name)
+
+    brand_name = request.GET.get('brand', 'all')
+    if brand_name == "all":
+        products = products.all()
+    else:
+        products = products.filter(brand__name=brand_name)
+
+    price_range = request.GET.get('price_range', '0')
+    if price_range == "0":
+        products = products.all
+    else:
+        min_price, max_price = price_range.split('-')
+        products = products.filter(price__gte=min_price, price__lte=max_price)
+
+    categories = Category.objects.all()
+    brands = Brand.objects.all()
+
+    return render(request, 'mysite/shop.html', {'products': products, 'categories': categories, 'brands': brands})
 
 
 def product_detail(request, pk):
