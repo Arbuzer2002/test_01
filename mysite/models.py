@@ -17,6 +17,10 @@ class Gender(models.Model):
     name = models.CharField(max_length=64)
 
 
+class Brand(models.Model):
+    name = models.CharField(max_length=64)
+
+
 class Size(models.Model):
     name = models.CharField(max_length=10)
     quantity = models.IntegerField(default=0)
@@ -28,6 +32,7 @@ class Product(models.Model):
     material = models.ForeignKey(Material, on_delete=models.CASCADE)
     color = models.ForeignKey(Color, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
     image = models.ImageField(upload_to='product_images/')
     description = models.TextField()
     sizes = models.ManyToManyField(Size)
