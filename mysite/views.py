@@ -1,11 +1,12 @@
 from django.contrib.auth import authenticate, login, logout
-from django.shortcuts import render, redirect
+from django.db.models import Sum
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Product
 from django.http import HttpResponse
 
 
-def index(request):
-    return render(request, 'mysite/index.html')
+def home(request):
+    return render(request, 'mysite/home.html')
 
 
 def shop(request):
@@ -13,35 +14,12 @@ def shop(request):
     return render(request, 'mysite/shop.html', {'products': products})
 
 
+def product_detail(request, pk):
+    product = get_object_or_404(Product, pk=pk)
+    total_sizes = product.sizes.aggregate(total=Sum('quantity'))['total']
+    total_sizes = total_sizes if total_sizes is not None else 0
+    return render(request, 'mysite/product_detail.html', {'product': product, 'total_sizes': total_sizes})
+
+
 def page(request):
     return render(request, 'mysite/tast.html')
-
-
-def login_view(request):
-    if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request, user)
-            return redirect('home')  # Замените 'home' на URL вашей домашней страницы
-        else:
-            error_message = 'Неверные учетные данные. Попробуйте еще раз.'
-            return render(request, 'mysite/login.html', {'error_message': error_message})
-    else:
-        return render(request, 'mysite/login.html')
-
-
-def logout_view(request):
-    logout(request),
-    return redirect('')  # Замените 'home' на URL вашей домашней страницы
-
-
-def my_view(request):
-    # Сохранение значения переменной сеанса
-    request.session['my_variable'] = 'my_value'
-
-    # Получение значения переменной сеанса
-    my_variable = request.session.get('my_variable')
-
-    return render(request, 'my_template.html', {'my_variable': my_variable})

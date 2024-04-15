@@ -1,0 +1,92 @@
+{% extends 'mysite/base.html'%}
+{% load static %}
+{% block content %}
+<section id="selling-product" class="single-product py-2 my-2 py-md-5 my-md-5">
+    <div class="container">
+      <div class="row g-5">
+        <div class="col-lg-8">
+          <div class="row flex-column-reverse flex-lg-row">
+            <div class="col-md-12 col-lg-2">
+            </div>
+            <div class="col-md-12 col-lg-10">
+              <!-- product-large-slider -->
+              <div class="swiper product-large-slider">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide">
+                    <img src="{% static 'images/' %}{{ product.image.url }}" alt="product-item" class="product-image img-fluid">
+                  </div>
+                </div>
+                <div class="swiper-pagination"></div>
+              </div>
+              <!-- / product-large-slider -->
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="product-info">
+            <div class="element-header">
+              <h3 itemprop="name" class="display-6 fw-bold">{{ product.name }}</h3>
+            </div>
+            <div class="product-price py-3">
+              <strong class="fs-5 fw-bold">${{ product.price }}</strong>
+            </div>
+            <p>{{ product.description }}</p>
+            <div class="cart-wrap padding-small">
+              <div class="color-options product-select">
+                <div class="color-toggle" data-option-index="0">
+                  <h5 class="widget-title text-decoration-underline pe-2">Color:</h5>
+                  <ul class="select-list list-unstyled d-flex">
+                    <li class="select-item pe-3" data-val="Green" title="Green">
+                      {{ product.color.name }}
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="swatch product-select" data-option-index="1">
+                <h5 class="widget-title text-decoration-underline pe-2">Size:</h5>
+                    <ul class="select-list list-unstyled d-flex">
+                        {% for size in product.sizes.all %}
+                          <li data-value="{{ size.name }}" class="select-item pe-3">
+                              {{ size.name }}
+                          </li>
+                        {% endfor %}
+                    </ul>
+              </div>
+              <div class="product-quantity">
+                <div class="stock-number text-dark">{{ total_sizes }} in stock</div>
+                </div>
+              </div>
+            </div>
+            <div class="meta-product padding-small">
+              {% if product.is_new %}
+                <div class="meta-item d-flex align-items-baseline">
+                <ul class="select-list list-unstyled d-flex">
+                  <li data-value="S" class="select-item">Новинка</li>
+                </ul>
+                </div>
+              {% endif %}
+              <div class="meta-item d-flex align-items-baseline">
+                <h5 class="widget-title text-decoration-underline pe-2">Material:</h5>
+                <ul class="select-list list-unstyled d-flex">
+                  <li data-value="S" class="select-item">{{ product.material.name }}</li>
+                </ul>
+              </div>
+              <div class="meta-item d-flex align-items-baseline">
+                <h5 class="widget-title text-decoration-underline pe-2">Gender:</h5>
+                <ul class="select-list list-unstyled d-flex">
+                  <li data-value="S" class="select-item">{{ product.gender.name }}</li>
+                </ul>
+              </div>
+              <div class="meta-item d-flex align-items-baseline">
+                <h5 class="widget-title text-decoration-underline pe-2">Category:</h5>
+                <ul class="select-list list-unstyled d-flex">
+                  {{ product.category.name }}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
