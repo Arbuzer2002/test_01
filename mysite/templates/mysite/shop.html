@@ -139,14 +139,19 @@
         let selectedValue = this.value;
         window.location.href = "{% url 'shop' %}?sort_by=" + selectedValue;
     });
+
     function addFilter(param, value) {
-        let url = window.location.href;
         let params = new URLSearchParams(window.location.search);
         if (params.has(param)) {
             params.delete(param);
         }
         params.append(param, value);
-        window.location.href = url.split('?')[0] + '?' + params.toString();
+        let url = window.location.pathname + '?' + params.toString();
+        window.location.href = url;
+    }
+
+    if (performance.navigation.type === 1) {
+        window.history.replaceState({}, document.title, window.location.pathname);
     }
 </script>
 {% endblock %}
