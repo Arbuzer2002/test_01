@@ -1,5 +1,9 @@
 {% extends 'mysite/base.html'%}
 {% load static %}
+{% block static %}
+    <link rel="stylesheet" href="{% static 'css/news.css'%}">
+    <script src="{% static 'js/home.js' %}"></script>
+{% endblock %}
 {% block content %}
   <section id="intro" class="position-relative mt-4">
     <div class="container-lg">
@@ -78,33 +82,38 @@
       <div class="swiper-pagination"></div>
     </div>
   </section>
-  <section class="discount-coupon py-2 my-2 py-md-5 my-md-5">
-    <div class="container">
-      <div class="bg-gray coupon position-relative p-5">
-        <div class="bold-text position-absolute">10% OFF</div>
-        <div class="row justify-content-between align-items-center">
-          <div class="col-lg-7 col-md-12 mb-3">
-            <div class="coupon-header">
-              <h2 class="display-7">10% OFF Discount Coupons</h2>
-              <p class="m-0">Subscribe us to get 10% OFF on all the purchases</p>
+  <section>
+    {% for new in news %}
+        <div class="projcard-container {% if not forloop.last %}active{% endif %}">
+            <div class="projcard projcard-blue">
+                <div class="projcard-innerbox">
+                    <img class="projcard-img" src="{% static 'images/' %}{{ new.image.url }}" alt="news-item" />
+                    <div class="projcard-textbox">
+                        <div class="projcard-title">Новинка</div>
+                        <div class="projcard-subtitle">{{ new.name }}</div>
+                        <div class="projcard-bar"></div>
+                        <div class="projcard-description">{{ new.description }}</div>
+                        <div class="projcard-tagbox">
+                            <span class="projcard-tag">{{ new.date|date:"d.m.Y" }}</span>
+                        </div>
+                    </div>
+                    <div class="projcard-buttons">
+                        {% if not forloop.first %}
+                            <button class="prev-news-button">Предыдущая новость</button>
+                        {% endif %}
+                        {% if not forloop.last %}
+                            <button class="next-news-button">Следующая новость</button>
+                        {% endif %}
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="col-lg-3 col-md-12">
-            <div class="btn-wrap">
-              <a href="#" class="btn btn-black btn-medium text-uppercase hvr-sweep-to-right">Email me</a>
-            </div>
-          </div>
         </div>
-      </div>
-    </div>
+    {% endfor %}
   </section>
   <section id="featured-products" class="product-store">
     <div class="container-md">
       <div class="display-header d-flex align-items-center justify-content-between">
         <h2 class="section-title text-uppercase">Featured Products</h2>
-        <div class="btn-right">
-          <a href="shop.html" class="d-inline-block text-uppercase text-hover fw-bold">View all</a>
-        </div>
       </div>
       <div class="product-content padding-small">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5">

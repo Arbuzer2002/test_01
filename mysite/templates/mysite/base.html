@@ -15,7 +15,6 @@
 
   
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
-  <link rel="stylesheet" href="{% static 'css/chocolat.css'%}" type="text/css" media="screen" >
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="stylesheet" href="{% static 'css/css/vendor.css' %}">
   <link rel="stylesheet" href="{% static 'css/style.css'%}">
@@ -26,16 +25,11 @@
   rel="stylesheet">
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-eBqVmebvlmVgsV1QT98q6PiLdZBw8+K78Ye4xv3LbBMhA/N5S/n9J68fzI1KJ7/x" crossorigin="anonymous"></script>
-  <script src="{%static 'node_modules/jquery/dist/jquery.min.js'%}"></script> <!-- Зависимость: jQuery -->
-  <script src="{%static 'css/js/chocolat.js'%}"></script>
   <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
-  <script src="{%static 'css/jarallax.js'%}"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-  <script async src="{%static 'css/js/jquery-1.11.0.min.js' %}"></script>
-  <script async src="{%static 'css/js/plugins.js' %}"></script>
-  <script async src="{%static 'css/js/script.js' %}"></script>
-
+  {% block static %}
+  {% endblock %}
 </head>
 
 <body>

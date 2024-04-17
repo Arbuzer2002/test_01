@@ -204,3 +204,34 @@ body {
 	right: -10px;
 	top: 0;
 }
+
+.hidden {
+    display: none;
+}
+
+.projcard-buttons {
+    display: block;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.prev-news-button,
+.next-news-button {
+	z-index: 11;
+    top: 10px;
+    right: 10px;
+    background-color: #0088FF;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.prev-news-button:hover,
+.next-news-button:hover {
+    background-color: #005299;
+}
+

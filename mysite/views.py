@@ -1,10 +1,12 @@
 from django.db.models import Sum, Q
 from django.shortcuts import render, get_object_or_404
-from .models import Product, Category, Brand
+from .models import Product, Category, Brand, News
 
 
 def home(request):
-    return render(request, 'mysite/home.html')
+    news = News.objects.all().order_by('-date')
+
+    return render(request, 'mysite/home.html', {'news': news})
 
 
 def shop(request):
