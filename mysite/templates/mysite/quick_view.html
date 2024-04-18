@@ -27,10 +27,17 @@
           </li>
         </ul>
         <!-- variations-form -->
-        <div class="categories d-flex flex-wrap pt-3">
-          <strong class="pe-2">Brand:</strong>
-            {{ product.brand }}
-        </div>
+        {% if product.brand %}
+          <div class="categories d-flex flex-wrap pt-3">
+              <strong class="pe-2">Brand:</strong>
+                {{ product.brand }}
+          </div>
+        {% else %}
+          <div class="categories d-flex flex-wrap pt-3">
+              <strong class="pe-2">Release date:</strong>
+                {{ product.release_date|date:"d.m.Y" }}
+          </div>
+        {% endif %}
       </div>
     </div>
 </div>

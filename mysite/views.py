@@ -1,19 +1,28 @@
 from django.db.models import Sum, Q
 from django.shortcuts import render, get_object_or_404
-from .models import Product, Category, Brand, News
+from .models import Product, Category, Brand, News, FeaturedProduct
 
 
 def home(request):
     news = News.objects.all().order_by('-date')
     latest_products = Product.objects.all().order_by('-added_date')[:5]
+    featured_products = FeaturedProduct.objects.all().order_by('-release_date')[:5]
 
-    return render(request, 'mysite/home.html', {'news': news, 'latest_products': latest_products})
+    return render(request, 'mysite/home.html', {'news': news, 'latest_products': latest_products,
+                                                'featured_products': featured_products})
 
 
 def quick_view(request):
     product_id = request.GET.get('product_id')
     if product_id:
         product = get_object_or_404(Product, pk=product_id)
+        return render(request, 'mysite/quick_view.html', {'product': product})
+
+
+def feat_quick_view(request):
+    product_id = request.GET.get('product_id')
+    if product_id:
+        product = get_object_or_404(FeaturedProduct, pk=product_id)
         return render(request, 'mysite/quick_view.html', {'product': product})
 
 
