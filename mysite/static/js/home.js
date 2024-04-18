@@ -1,11 +1,15 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-    const mainSwiper = new Swiper('.main-swiper', {
-        slidesPerView: 1,
+    let swiper = new Swiper('.main-swiper', {
+        slidesPerView: 'auto',
         spaceBetween: 30,
+        autoplay: {
+          delay: 3000,
+          disableOnInteraction: false,
+        },
         pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
+          el: '.swiper-pagination',
+          clickable: true,
         },
     });
 
