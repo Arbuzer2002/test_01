@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     let swiper = new Swiper('.main-swiper', {
         slidesPerView: 'auto',
+        loop: true,
         spaceBetween: 30,
         autoplay: {
           delay: 3000,
