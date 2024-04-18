@@ -5,6 +5,9 @@ from .models import Product, Category, Brand, News
 
 def home(request):
     news = News.objects.all().order_by('-date')
+    latest_products = Product.objects.all().order_by('-added_date')[:5]
+
+    return render(request, 'mysite/home.html', {'news': news, 'latest_products': latest_products})
 
     return render(request, 'mysite/home.html', {'news': news})
 
