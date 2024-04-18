@@ -65,6 +65,20 @@ class Product(models.Model):
         return self.name
 
 
+class FeaturedProduct(models.Model):
+    name = models.CharField(max_length=255)
+    image = models.ImageField(upload_to='featured_products_images/')
+    description = models.TextField()
+    color = models.ForeignKey(Color, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    release_date = models.DateTimeField(default=datetime.datetime.now() + datetime.timedelta(days=7))
+
+    def __str__(self):
+        return self.name
+
+
 class News(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
