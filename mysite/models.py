@@ -59,6 +59,7 @@ class Product(models.Model):
     is_new = models.BooleanField()
     year = models.IntegerField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
+    added_date = models.DateTimeField(default=datetime.date.today)
 
     def __str__(self):
         return self.name
