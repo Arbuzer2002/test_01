@@ -3,72 +3,65 @@
   "use strict";
 
   // init jarallax parallax
-  var initJarallax = function () {
+  let initJarallax = function () {
     jarallax(document.querySelectorAll(".jarallax"));
-
     jarallax(document.querySelectorAll(".jarallax-img"), {
       keepImg: true,
     });
-  }
+  };
 
   // input spinner
-  var initProductQty = function(){
+  let initProductQty = function(){
 
     $('.product-qty').each(function(){
 
-      var $el_product = $(this);
-      var quantity = 0;
+      let $el_product = $(this);
 
       $el_product.find('.quantity-right-plus').click(function(e){
           e.preventDefault();
-          var quantity = parseInt($el_product.find('.quantity').val());
+          let quantity = parseInt($el_product.find('.quantity').val());
           $el_product.find('.quantity').val(quantity + 1);
       });
 
       $el_product.find('.quantity-left-minus').click(function(e){
           e.preventDefault();
-          var quantity = parseInt($el_product.find('.quantity').val());
-          if(quantity>0){
+          let quantity = parseInt($el_product.find('.quantity').val());
+          if(quantity > 0){
             $el_product.find('.quantity').val(quantity - 1);
           }
       });
 
     });
 
-  }
+  };
 
   // init Chocolat light box
-	var initChocolat = function () {
-		Chocolat(document.querySelectorAll('.image-link'), {
-			imageSize: 'contain',
-			loop: true,
-		})
-	}
+  let initChocolat = function () {
+    Chocolat(document.querySelectorAll('.image-link'), {
+      imageSize: 'contain',
+      loop: true,
+    });
+  };
 
   // Animate Texts
-  var initTextFx = function () {
+  let initTextFx = function () {
     $('.txt-fx').each(function () {
-      var newstr = '';
-      var count = 0;
-      var delay = 0;
-      var stagger = 10;
-      var words = this.textContent.split(/\s/);
-      
-      $.each( words, function( key, value ) {
-        newstr += '<span class="word">';
-
-        for ( var i = 0, l = value.length; i < l; i++ ) {
-          newstr += "<span class='letter' style='transition-delay:"+ ( delay + stagger * count ) +"ms;'>"+ value[ i ] +"</span>";
-          count++;
+      let $this = $(this);
+      let words = $this.text().split(' ');
+      let newHtml = '';
+      $.each(words, function (i, word) {
+        newHtml += '<span class="word">';
+        $.each(word.split(''), function (j, letter) {
+          newHtml += '<span class="letter">' + letter + '</span>';
+        });
+        newHtml += '</span>';
+        if (i < words.length - 1) {
+          newHtml += '<span class="letter">&nbsp;</span>';
         }
-        newstr += '</span>';
-        newstr += "<span class='letter' style='transition-delay:"+ delay +"ms;'>&nbsp;</span>";
-        count++;
       });
-
-      this.innerHTML = newstr;
+      $this.html(newHtml);
     });
-  }
+  };
 
   $(document).ready(function () {
 
@@ -85,11 +78,11 @@
       $(".search-box").toggleClass('active');
     });
 
-    var breakpoint = window.matchMedia('(max-width:61.93rem)');
+    let breakpoint = window.matchMedia('(max-width:61.93rem)');
 
     if (breakpoint.matches === false) {
-      
-      var swiper = new Swiper(".main-swiper", {
+
+      let swiperMain = new Swiper(".main-swiper", {
         slidesPerView: 1,
         spaceBetween: 48,
         pagination: {
@@ -105,7 +98,7 @@
       });
 
       // homepage 2 slider
-      var swiper = new Swiper(".thumb-swiper", {
+      let swiperThumb = new Swiper(".thumb-swiper", {
         direction: 'horizontal',
         slidesPerView: 6,
         spaceBetween: 6,
@@ -116,7 +109,8 @@
           },
         },
       });
-      var swiper2 = new Swiper(".large-swiper", {
+
+      let swiperLarge = new Swiper(".large-swiper", {
         spaceBetween: 48,
         effect: 'fade',
         slidesPerView: 1,
@@ -125,14 +119,14 @@
           clickable: true,
         },
         thumbs: {
-          swiper: swiper,
+          swiper: swiperThumb,
         },
       });
 
     }
 
     // product single page
-    var thumb_slider = new Swiper(".product-thumbnail-slider", {
+    let thumbSlider = new Swiper(".product-thumbnail-slider", {
       slidesPerView: 5,
       spaceBetween: 10,
       // autoplay: true,
@@ -148,13 +142,13 @@
     });
 
     // product large
-    var large_slider = new Swiper(".product-large-slider", {
+    let largeSlider = new Swiper(".product-large-slider", {
       slidesPerView: 1,
       // autoplay: true,
       spaceBetween: 0,
       effect: 'fade',
       thumbs: {
-        swiper: thumb_slider,
+        swiper: thumbSlider,
       },
       pagination: {
         el: ".swiper-pagination",
@@ -162,11 +156,9 @@
       },
     });
 
-    
+  }); // End of document ready
 
-  }); // End of a document
-
-  $(window).load(function(){
+  $(window).on('load', function(){
     $('.preloader').fadeOut();
   });
 
