@@ -71,7 +71,6 @@ class FeaturedProduct(models.Model):
     description = models.TextField()
     color = models.ForeignKey(Color, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     release_date = models.DateTimeField(default=datetime.datetime.now() + datetime.timedelta(days=7))
 
