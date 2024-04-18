@@ -9,7 +9,12 @@ def home(request):
 
     return render(request, 'mysite/home.html', {'news': news, 'latest_products': latest_products})
 
-    return render(request, 'mysite/home.html', {'news': news})
+
+def quick_view(request):
+    product_id = request.GET.get('product_id')
+    if product_id:
+        product = get_object_or_404(Product, pk=product_id)
+        return render(request, 'mysite/quick_view.html', {'product': product})
 
 
 def shop(request):

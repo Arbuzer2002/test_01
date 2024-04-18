@@ -326,4 +326,22 @@
       </div>
     </div>
   </section>
+<script>
+    function loadProductInfo(productId) {
+        $.ajax({
+            url: '/get_quick_info/',
+            type: 'GET',
+            data: {
+                'product_id': productId
+            },
+            success: function(response) {
+                $('.modal-body').html(response);
+                $('#modaltoggle').modal('show');
+            },
+            error: function(xhr, status, error) {
+                console.error(xhr.responseText);
+            }
+        });
+    }
+</script>
 {% endblock %}

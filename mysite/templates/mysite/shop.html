@@ -46,7 +46,7 @@
                                 <img src="{% static 'images/' %}{{ product.image.url }}" alt="product-item" class="product-image img-fluid">
                                 <div class="cart-concern position-absolute d-flex justify-content-center">
                                     <div class="cart-button d-flex gap-2 justify-content-center align-items-center">
-                                        <button type="button" class="btn btn-light" data-bs-target="#modaltoggle" data-bs-toggle="modal">
+                                        <button type="button" class="btn btn-light" data-bs-target="#modaltoggle" onclick="loadProductInfo('{{ product.id }}')">
                                             <svg class="quick-view">
                                                 <use xlink:href="#quick-view"></use>
                                             </svg>
@@ -152,6 +152,23 @@
 
     if (performance.navigation.type === 1) {
         window.history.replaceState({}, document.title, window.location.pathname);
+    }
+
+    function loadProductInfo(productId) {
+        $.ajax({
+            url: '/get_quick_info/',
+            type: 'GET',
+            data: {
+                'product_id': productId
+            },
+            success: function(response) {
+                $('.modal-body').html(response);
+                $('#modaltoggle').modal('show');
+            },
+            error: function(xhr, status, error) {
+                console.error(xhr.responseText);
+            }
+        });
     }
 </script>
 {% endblock %}

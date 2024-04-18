@@ -1,0 +1,37 @@
+{% load static %}
+<div class="col-lg-12 col-md-12 me-3 text-center">
+    <div class="image-holder">
+      <img src="{% static 'images/' %}{{ product.image.url }}" alt="{{ product.name }}" width="300" height="300">
+    </div>
+    </div>
+    <div class="col-lg-12 col-md-12">
+    <div class="summary">
+      <div class="summary-content fs-6">
+        <div class="product-header d-flex justify-content-between mt-4">
+          <h3 class="display-7">{{ product.name }}</h3>
+          <div class="modal-close-btn">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+            </button>
+          </div>
+        </div>
+        <span class="product-price fs-3">${{ product.price }}</span>
+        <div class="product-details">
+          <p class="fs-7">{{ product.description }}</p>
+        </div>
+        <ul class="select">
+          <li>
+            <strong>Colour:</strong> {{ product.color }}
+          </li>
+          <li>
+            <strong>Category:</strong> {{ product.category }}
+          </li>
+        </ul>
+        <!-- variations-form -->
+        <div class="categories d-flex flex-wrap pt-3">
+          <strong class="pe-2">Brand:</strong>
+            {{ product.brand }}
+        </div>
+      </div>
+    </div>
+</div>
+
