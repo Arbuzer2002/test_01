@@ -1,5 +1,14 @@
 document.addEventListener('DOMContentLoaded', function() {
 
+    const mainSwiper = new Swiper('.main-swiper', {
+        slidesPerView: 1,
+        spaceBetween: 30,
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+    });
+
     let newsCards = document.querySelectorAll('.projcard-container');
 
     for (let i = 1; i < newsCards.length; i++) {
