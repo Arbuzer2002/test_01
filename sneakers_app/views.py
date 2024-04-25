@@ -77,8 +77,8 @@ def men_products(request):
     unisex_products = Product.objects.filter(gender=unisex_gender)
 
     products_by_men = {
-        'Male': male_products,
-        'Unisex': unisex_products
+        'Мужское': male_products,
+        'Унисекс': unisex_products
     }
 
     return render(request, 'sneakers_app/5menproducts.html', {'products_by_men': products_by_men})
@@ -95,4 +95,14 @@ def type_products(request):
 
 
 def woman_products(request):
-    return render(request, 'sneakers_app/6womanproducts.html')
+    female_gender = Gender.objects.get(name='Female')
+    unisex_gender = Gender.objects.get(name='Unisex')
+
+    female_products = Product.objects.filter(gender=female_gender)
+    unisex_products = Product.objects.filter(gender=unisex_gender)
+
+    products_by_women = {
+        'Женское': female_products,
+        'Унисекс': unisex_products
+    }
+    return render(request, 'sneakers_app/6womanproducts.html', {'products_by_women': products_by_women})
