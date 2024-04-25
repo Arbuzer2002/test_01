@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from mysite.models import Product
+from mysite.models import Product, Brand
 
 
 def ru_index(request):
@@ -53,8 +53,14 @@ def colour_products(request):
     return render(request, 'sneakers_app/4colour.html')
 
 
-def model_products(request):
-    return render(request, 'sneakers_app/2modelproducts.html')
+def brand_products(request):
+    all_brands = Brand.objects.all()
+
+    products_by_brand = {}
+    for brand in all_brands:
+        products_by_brand[brand] = Product.objects.filter(brand=brand)
+
+    return render(request, 'sneakers_app/2modelproducts.html', {'products_by_brand': products_by_brand})
 
 
 def men_products(request):
