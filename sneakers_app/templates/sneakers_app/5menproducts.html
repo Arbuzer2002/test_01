@@ -1,67 +1,37 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8" />
+  {% load static %}
+  <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="products.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <button class ="step_back" onclick="window.location.href='rusearch.html';"><i class="fa-regular fa-circle-left fa-10x"></i></button>
-  <button class ="home" onclick="window.location.href='rumain.html';"><i class="fa-solid fa-house fa-10x"></i></button> 
-  <h1 class="header">Мужские</h1>
+  <link rel="stylesheet" href="{% static 'sneakers_css/products.css'%}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <button class ="step_back" onclick="window.location.href='{% url 'ru_search' %}';"><i class="fa-regular fa-circle-left fa-10x"></i></button>
+  <button class ="home" onclick="window.location.href='{% url 'index' %}';"><i class="fa-solid fa-house fa-10x"></i></button>
 </head>
 <body>
-    <ul class = "container"> 
-        <li class = "product-card">
-          <div class = "product-image">
-            <!-- Add your image here -->
-            <img src = "pic_snikers/men.png" alt = "Product Image" />
-          </div>
-          <span class="imdiz-product__discount">-15%</span>
-          <div class="imdiz-product__av">
-						<i class="fa fa-check" aria-hidden="true"></i>
-						<span>В наличии</span>
-					</div>
-          <div class = "product-details">
-            <h2 class = "product-title">Мужские кроссовки LN65</h2>
-            <h4 class = "product-price">5000 руб</h4>
-            <button class = "view-btn">Подробнее</button>
-            <button class = "add-to-cart-btn">Купить</button>
-          </div>
-        </li>
-        <li class = "product-card">
-          <div class = "product-image">
-            <!-- Add your image here -->
-            <img src = "pic_snikers/men3.png" alt = "Product Image" />
-          </div>
-          <span class="imdiz-product__discount">-20%</span>
-          <div class="imdiz-product__av">
-						<i class="fa fa-check" aria-hidden="true"></i>
-						<span>В наличии</span>
-					</div>
-          <div class = "product-details">
-            <h2 class = "product-title">Мужские кроссовки LN65</h2>
-            <h4 class = "product-price">5000 руб</h4>
-            <button class = "view-btn">Подробнее</button>
-            <button class = "add-to-cart-btn">Купить</button>
-          </div>
-        </li>
-        <li class = "product-card">
-          <div class = "product-image">
-            <!-- Add your image here -->
-            <img src = "pic_snikers/men2.png" alt = "Product Image" />
-          </div>
-          <span class="imdiz-product__discount">-17%</span>
-          <div class="imdiz-product__av">
-						<i class="fa fa-check" aria-hidden="true"></i>
-						<span>В наличии</span>
-					</div>
-          <div class = "product-details">
-            <h2 class = "product-title">Мужские кроссовки LN65</h2>
-            <h4 class = "product-price">5000 руб</h4>
-            <button class = "view-btn">Подробнее</button>
-            <button class = "add-to-cart-btn">Купить</button>
-          </div>
-        </li>
-    </ul> 
+    {% for gender, products in products_by_men.items %}
+        {% if products %}
+            <h1 class="header">{{ gender }}</h1>
+            <ul class="container">
+                {% for product in products %}
+                    <li class="product-card" style="margin-left: 0;">
+                        <div class="product-image">
+                            <img src="{% static 'images/' %}{{ product.image.url }}" alt="Product Image" style="width: 600px; height: 600px"/>
+                        </div>
+                        <div class="imdiz-product__av">
+                            <i class="fa fa-check" aria-hidden="true"></i>
+                            <span>В наличии</span>
+                        </div>
+                        <div class="product-details">
+                            <h2 class="product-title">{{ product.name }}</h2>
+                            <h4 class="product-price">{{ product.price }} руб</h4>
+                            <a href="{% url 'product_detail' product.pk %}"><button class="view-btn">Подробнее</button></a>
+                        </div>
+                    </li>
+                {% endfor %}
+        {% endif %}
+        </ul>
+    {% endfor %}
 </body>
 </html>
