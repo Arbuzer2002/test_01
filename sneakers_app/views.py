@@ -1,5 +1,7 @@
 from django.shortcuts import render
 
+from mysite.models import Product
+
 
 def ru_index(request):
     return render(request, 'sneakers_app/rumain.html')
@@ -38,7 +40,13 @@ def news3(request):
 
 
 def year_products(request):
-    return render(request, 'sneakers_app/1yearproducts.html')
+    all_years = Product.objects.values_list('year', flat=True).distinct()
+
+    products_by_year = {}
+    for year in all_years:
+        products_by_year[year] = Product.objects.filter(year=year)
+
+    return render(request, 'sneakers_app/1yearproducts.html', {'products_by_year': products_by_year})
 
 
 def colour_products(request):

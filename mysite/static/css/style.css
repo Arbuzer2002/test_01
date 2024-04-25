@@ -1015,11 +1015,6 @@ a.text-hover:focus:after {
 }
 
 
-.swiper-slide img {
-    opacity: 0.1;
-    transition: .3s ease all
-}
-
 .swiper-slide-active img,
 .swiper-slide-duplicate-active img {
     opacity: 1
