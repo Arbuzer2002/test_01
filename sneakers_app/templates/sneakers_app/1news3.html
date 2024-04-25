@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    {% load static %}
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'sneakers_css/app_news.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+  #container
+  {   
+    top:0px;
+    padding-top:0;
+    margin:auto; 
+    position:relative;
+    width:1920px;
+    height:1200px;
+    }
+  </style>
+  <button class ="step_back" onclick="window.location.href='runew.html';"><i class="fa-regular fa-circle-left fa-10x"></i></button>
+</head>
+<body>
+    <div class="projcard-container">
+		
+        <div class="projcard projcard-customcolor" style="--projcard-color: #8041f5;">
+            <div class="projcard-innerbox">
+                <img class="projcard-img" src="{% static 'images/pic_snikers/новости4.png' %}"/>
+                <div class="projcard-textbox">
+                    <div class="projcard-title">Красопедки</div>
+                    <div class="projcard-subtitle">Ля какие изящные</div>
+                    <div class="projcard-bar"></div>
+                    <div class="projcard-description">Тут описание новости, характеристики, уникальный цвет и т.д короче</div>
+                    <div class="projcard-tagbox">
+                        <span class="projcard-tag">03/05/2023</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="projcard projcard-customcolor" style="--projcard-color: #f541b0;">
+            <div class="projcard-innerbox">
+                <img class="projcard-img" src="{% static 'images/pic_snikers/новости5.png' %}"/>
+                <div class="projcard-textbox">
+                    <div class="projcard-title">Бархотные тяги</div>
+                    <div class="projcard-subtitle">Кефтеме</div>
+                    <div class="projcard-bar"></div>
+                    <div class="projcard-description">Тут описание новости, характеристики, уникальный цвет и т.д короче</div>
+                    <div class="projcard-tagbox">
+                        <span class="projcard-tag">02/04/2023</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</body>
+</html>

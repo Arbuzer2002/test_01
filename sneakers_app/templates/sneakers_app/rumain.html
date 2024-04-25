@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+  <html lang="ru">
+  <head>
+    {% load static %}
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'sneakers_css/homestyle.css'%}">
+    <style>
+        body {
+            background-image: url("{% static 'images/Pic/main RU.png' %}");
+        }
+        #container {
+            top:0;
+            padding-top:0;
+            margin:auto;
+            position:relative;
+            width:1920px;
+            height:1200px;
+        }
+    </style>
+  </head>
+  <body>
+    <br>
+    <br>
+      <div class ="app">
+        <div class ="gg">
+          <div id="container">
+            <button class="main-left" onclick="window.location.href='{% url 'ru_new' %}';"></button>
+            <button class="main-left" onclick="window.location.href='{% url 'ru_offers' %}';"></button>
+            <button class="main-right" onclick="window.location.href='{% url 'ru_search' %}';"></button>
+            <button class="main-right" onclick="window.location.href='{% url 'ru_test' %}';"></button>
+            <button class="language-ru"></button>
+            <button class="language-eng" onclick="window.location.href='{% url 'en_main' %}';"></button>
+          </div>
+        </div>
+      </div>
+  </body>
+  </html>
