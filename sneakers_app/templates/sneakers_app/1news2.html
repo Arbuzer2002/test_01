@@ -17,27 +17,26 @@
     height:1200px;
     }
   </style>
-  <button class ="step_back" onclick="window.location.href='runew.html';"><i class="fa-regular fa-circle-left fa-10x"></i></button>
+  <button class ="step_back" onclick="window.location.href='{% url 'ru_new' %}';"><i class="fa-regular fa-circle-left fa-10x"></i></button>
 </head>
 <body>
     <div class="projcard projcard-customcolor" style="--projcard-color: #41f550;">
-		
-        <div class="projcard projcard-blue">
-            <div class="projcard-innerbox">
-                <img class="projcard-img" src="{% static 'images/pic_snikers/новости3.png' %}"/>
-                <div class="projcard-textbox">
-                    <div class="projcard-title">ВААААААААААААААУ</div>
-                    <div class="projcard-subtitle">Модель Box с дышущей поверхностью</div>
-                    <div class="projcard-bar"></div>
-                    <div class="projcard-description">Только по предзаказу и описание тут</div>
-                    <div class="projcard-tagbox">
-                        <span class="projcard-tag">01/05/2023</span>
+		{% for product in unique_products %}
+            <div class="projcard projcard-blue">
+                <div class="projcard-innerbox">
+                    <img class="projcard-img" src="{% static 'images/' %}{{ product.image.url }}"/>
+                    <div class="projcard-textbox">
+                        <div class="projcard-title">{{ product.name }}</div>
+                        <div class="projcard-subtitle">{{ product.category }}, {{ product.color|lower }}</div>
+                        <div class="projcard-bar"></div>
+                        <div class="projcard-description">{{ product.description }}</div>
+                        <div class="projcard-tagbox">
+                            <span class="projcard-tag">{{ product.release_date|date:"d.m.Y" }}</span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        
-        
+        {% endfor %}
     </div>
 </body>
 </html>
