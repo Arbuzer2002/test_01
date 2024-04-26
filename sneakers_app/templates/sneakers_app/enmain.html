@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8" />
+  {% load static %}
+  <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="{% static 'sneakers_css/homestyle.css'%}">
   <style>
+    body {
+        background-image: url("{% static 'images/Pic/main.png' %}");
+    }
   #container
   {   
     top:0px;
@@ -16,20 +20,20 @@
     }
   </style>
 </head>
-<body background="Pic/main.png">
+<body>
   <br>
   <br>
-    <div class ="app">
-      <div class ="gg">
-        <div id="container">
-          <button class ="main-left" onclick="window.location.href='ennew.html';"></button>
-          <button class ="main-left" onclick="window.location.href='enoffers.html';"></button>
-          <button class ="main-right" onclick="window.location.href='ensearch.html';"></button>
-          <button class ="main-right" onclick="window.location.href='entest.html';"></button>
-          <button class ="language-ru" onclick="window.location.href='rumain.html';"></button>
-          <button class ="language-eng" ></button>
+    <div class="app">
+        <div class="gg">
+            <div id="container">
+                <a href="{% url 'en_new' %}"><button class="main-left"></button></a>
+                <a href="{% url 'en_offers' %}"><button class="main-left"></button></a>
+                <a href="{% url 'en_search' %}"><button class="main-right"></button></a>
+                <a href="{% url 'en_test' %}"><button class="main-right"></button></a>
+                <a href="{% url 'index' %}"><button class="language-ru"></button></a>
+                <button class="language-eng"></button>
+            </div>
         </div>
-      </div>
     </div>
 </body>
 </html>

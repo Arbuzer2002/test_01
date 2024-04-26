@@ -27,6 +27,22 @@ def en_main(request):
     return render(request, 'sneakers_app/enmain.html')
 
 
+def en_new(request):
+    return render(request, 'sneakers_app/ennew.html')
+
+
+def en_offers(request):
+    return render(request, 'sneakers_app/enoffers.html')
+
+
+def en_search(request):
+    return render(request, 'sneakers_app/ensearch.html')
+
+
+def en_test(request):
+    return render(request, 'sneakers_app/entest.html')
+
+
 def news1(request):
     featured_products = FeaturedProduct.objects.all()
 
