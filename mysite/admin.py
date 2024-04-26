@@ -4,7 +4,8 @@ from .models import Product, Category, Material, Color, Gender, Size, Brand, New
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('name', 'category', 'price')
+    list_display = ('name', 'category', 'is_recommend')
+    list_filter = ['is_recommend']
     search_fields = ('name', 'category')
 
 
