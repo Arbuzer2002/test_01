@@ -38,7 +38,9 @@ def news2(request):
 
 
 def news3(request):
-    return render(request, 'sneakers_app/1news3.html')
+    recommend_products = Product.objects.filter(is_recommend=True)
+
+    return render(request, 'sneakers_app/1news3.html', {'recommend_products': recommend_products})
 
 
 def year_products(request):
