@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product, Category, Material, Color, Gender, Size, Brand, News, FeaturedProduct
+from .models import Product, Category, Material, Color, Gender, Size, Brand, News, FeaturedProduct, UniqueProduct
 
 
 @admin.register(Product)
@@ -15,6 +15,11 @@ class ProductAdmin(admin.ModelAdmin):
 
 
 @admin.register(FeaturedProduct)
+class ProductAdmin(admin.ModelAdmin):
+    list_display = ('name', 'description', 'release_date')
+
+
+@admin.register(UniqueProduct)
 class ProductAdmin(admin.ModelAdmin):
     list_display = ('name', 'description', 'release_date')
 
