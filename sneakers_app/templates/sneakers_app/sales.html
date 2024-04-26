@@ -1,14 +1,18 @@
 <!DOCTYPE html>
   <html lang="ru">
   <head>
-    <meta charset="utf-8" />
+    {% load static %}
+    <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="bonus_sales.css" />
+    <link rel="stylesheet" href="{% static 'sneakers_css/bonus_sales.css'%}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <style>
-    #container
+    body {
+      background-image: url("{% static 'images/Back.png' %}");
+    }
     {   
-      top:0px;
+      top:0
+    ;
       padding-top:0;
       margin:auto; 
       position:relative;
@@ -16,14 +20,14 @@
       height:1200px;
       }
     </style>
-    <button class ="step_back" onclick="window.location.href='ruoffers.html';"><i class="fa-regular fa-circle-left fa-10x"></i></button>
+    <button class ="step_back" onclick="window.location.href='{% url 'ru_offers' %}';"><i class="fa-regular fa-circle-left fa-10x"></i></button>
   </head>
-  <body background="Back.png">
+  <body>
     <div class="coupon">
         <div class="container">
           <h3>Апрельские зайчики</h3>
         </div>
-        <img src="sales.jpg" alt="Avatar" style="width:100%;">
+        <img src="{% static 'images/sales.jpg' %}" alt="Avatar" style="width:100%;">
         <div class="container" style="background-color:white">
           <h2><b>30% при покупке от 15000р</b></h2>
           <p>На новинки не распространяется!!!</p>

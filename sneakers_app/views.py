@@ -43,6 +43,14 @@ def en_test(request):
     return render(request, 'sneakers_app/entest.html')
 
 
+def sales(request):
+    return render(request, 'sneakers_app/sales.html')
+
+
+def ru_fortune(request):
+    return render(request, 'sneakers_app/rufortune.html')
+
+
 def news1(request):
     featured_products = FeaturedProduct.objects.all()
 

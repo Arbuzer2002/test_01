@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="ru" >
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="bonus_sales.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <button class ="step_back" onclick="window.location.href='ruoffers.html';"><i class="fa-regular fa-circle-left fa-6x"></i></button>
-  <h1 class="header">Для получения бонуса необходимо приобрести товары на сумму не менее 4тыс. руб</h1>
+    {% load static %}
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'sneakers_css/bonus_sales.css'%}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <button class ="step_back" onclick="window.location.href='{% url 'ru_offers' %}';"><i class="fa-regular fa-circle-left fa-6x"></i></button>
+    <h1 class="header">Для получения бонуса необходимо приобрести товары на сумму не менее 4тыс. руб</h1>
 </head>
 <body>
 <!-- главный блок -->
@@ -19,7 +20,7 @@
   <button class="btn-spin">Получить подарок</button>
 </div>
   <!-- подключаем скрипт -->
-  <script  src="fortune.js"></script>
+  <script  src="{% static 'js/fortune.js' %}"></script>
 
 </body>
 </html>
