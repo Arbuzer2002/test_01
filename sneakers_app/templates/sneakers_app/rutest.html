@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css" />
+    {% load static %}
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'sneakers_css/homestyle.css'%}">
   <style>
+  body {
+      background-image: url("{% static 'images/Pic/test RU.png' %}");
+  }
   #container
-  {   
-    top:0px;
+  {
+    top:0;
     padding-top:0;
     margin:auto; 
     position:relative;
@@ -16,13 +20,13 @@
     }
   </style>
 </head>
-<body background="Pic/test RU.png">
-    <div class ="app">
+<body>
+    <div class="app">
         <div id="container">
-            <button class ="season" onclick="window.location.href='rutestseason.html';"></button> 
-            <button class ="colourtest" onclick="window.location.href='rutestcolour.html';"></button>
-            <button class ="appiontment" onclick="window.location.href='rutestappiontment.html';"></button>
-            <button class ="maintest" onclick="window.location.href='rumain.html';"></button> 
+            <a href="{% url 'ru_test_season' %}"><button class="season"></button></a>
+            <a href="{% url 'ru_test_colour' %}"><button class="colourtest"></button></a>
+            <a href="{% url 'ru_test_appointment' %}"><button class="appiontment"></button></a>
+            <a href="{% url 'index' %}"><button class="maintest"></button></a>
         </div>
     </div>
 </body>

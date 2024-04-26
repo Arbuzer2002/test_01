@@ -51,6 +51,18 @@ def ru_fortune(request):
     return render(request, 'sneakers_app/rufortune.html')
 
 
+def test_season(request):
+    return render(request, 'sneakers_app/rutestseason.html')
+
+
+def test_colour(request):
+    return render(request, 'sneakers_app/rutestcolour.html')
+
+
+def test_appointment(request):
+    return render(request, 'sneakers_app/rutestappiontment.html')
+
+
 def news1(request):
     featured_products = FeaturedProduct.objects.all()
 

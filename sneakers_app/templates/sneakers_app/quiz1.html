@@ -2,17 +2,19 @@
 <html>
 	<head>
 		<title>Quiz</title>
+        {% load static %}
 		<meta charset="utf-8">
-		<link rel="stylesheet" type="text/css" href="styles/app.css">
+        <link rel="stylesheet" href="{% static 'sneakers_css/app.css'%}">
 		<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' />
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="mobile-web-app-capable" content="yes">
 		<meta name="HandheldFriendly" content="true"/>
 	</head>
 	<body>
-		<div class="wrapper">
+        <div class="wrapper">
 			<main class="main">
-				<div class="quiz__head">
+                <button class="backtest" style="font-size: large; margin-top: 0" onclick="window.location.href='{% url 'ru_test' %}';">Назад</button>
+                <div class="quiz__head">
 					<div class="head__content" id="head">HOOOOOOO</div>
 				</div>
 				<div class="quiz__body">
@@ -28,9 +30,8 @@
 						</div>
 					</div>
 				</div>
-				
 			</main>
 		</div>
-		<script type="text/javascript" src="scripts/app.js"></script>
+		<script type="text/javascript" src="{% static 'js/app.js' %}"></script>
 	</body>
 </html>

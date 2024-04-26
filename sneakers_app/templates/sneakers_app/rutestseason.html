@@ -1,18 +1,24 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Home</title>
-		<meta charset="utf-8">
-		<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' />
-		<meta name="apple-mobile-web-app-capable" content="yes">
-		<meta name="mobile-web-app-capable" content="yes">
-		<meta name="HandheldFriendly" content="true"/>
-		<link rel="stylesheet" type="text/css" href="styles/site.css">
+<head>
+    <title>Home</title>
+    {% load static %}
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="{% static 'sneakers_css/site.css'%}">
+    <meta charset="utf-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="HandheldFriendly" content="true"/>
+    <style>
+        body {
+          background-image: url("{% static 'images/Pic/quiz.png' %}");
+        }
+    </style>
 	</head>
-	<body background="Pic/quiz.png">
+	<body>
 		<div class="wrapper">
-			<iframe src="quiz1.html" width="1150" height="900" class="quiz-frame"></iframe>
-			<button class ="backtest" onclick="window.location.href='rutest.html';"></button>
+			{% include 'sneakers_app/quiz1.html' %}
 		</div>
 	</body>
 </html>
