@@ -21,37 +21,22 @@
 </head>
 <body>
     <div class="projcard-container">
-		
-        <div class="projcard projcard-blue">
-            <div class="projcard-innerbox">
-                <img class="projcard-img" src="{% static 'images/pic_snikers/новости.png' %}"/>
-                <div class="projcard-textbox">
-                    <div class="projcard-title">Новинка</div>
-                    <div class="projcard-subtitle">Модель Caplan с кожаной прошивкой</div>
-                    <div class="projcard-bar"></div>
-                    <div class="projcard-description">Тут описание новости, характеристики, уникальный цвет и т.д короче</div>
-                    <div class="projcard-tagbox">
-                        <span class="projcard-tag">05/05/2023</span>
+		{% for product in featured_products %}
+            <div class="projcard projcard-blue">
+                <div class="projcard-innerbox">
+                    <img class="projcard-img" src="{% static 'images/' %}{{ product.image.url }}"/>
+                    <div class="projcard-textbox">
+                        <div class="projcard-title">Новинка</div>
+                        <div class="projcard-subtitle">{{ product.name }}</div>
+                        <div class="projcard-bar"></div>
+                        <div class="projcard-description">{{ product.description }}</div>
+                        <div class="projcard-tagbox">
+                            <span class="projcard-tag">{{ product.release_date|date:"d.m.Y" }}</span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        
-        <div class="projcard projcard-customcolor" style="--projcard-color: #F5AF41;">
-            <div class="projcard-innerbox">
-                <img class="projcard-img" src="{% static 'images/pic_snikers/новости2.png' %}"/>
-                <div class="projcard-textbox">
-                    <div class="projcard-title">Новый boost для подошв</div>
-                    <div class="projcard-subtitle">Невероятная подошва</div>
-                    <div class="projcard-bar"></div>
-                    <div class="projcard-description">Тут описание новости, характеристики, уникальный цвет и т.д короче</div>
-                    <div class="projcard-tagbox">
-                        <span class="projcard-tag">04/04/2023</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
+        {% endfor %}
     </div>
 </body>
 </html>

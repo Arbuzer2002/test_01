@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from mysite.models import Product, Brand, Category, Color, Gender
+from mysite.models import Product, Brand, Category, Color, Gender, FeaturedProduct
 
 
 def ru_index(request):
@@ -28,7 +28,9 @@ def en_main(request):
 
 
 def news1(request):
-    return render(request, 'sneakers_app/1news.html')
+    featured_products = FeaturedProduct.objects.all()
+
+    return render(request, 'sneakers_app/1news.html', {'featured_products': featured_products})
 
 
 def news2(request):
