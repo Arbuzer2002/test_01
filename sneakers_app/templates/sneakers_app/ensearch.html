@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8" />
+  {% load static %}
+  <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="{% static 'sneakers_css/homestyle.css'%}">
   <style>
+    body {
+        background-image: url("{% static 'images/Pic/search.png' %}");
+    }
   #container
   {   
-    top:0px;
+    top:0;
     padding-top:0;
     margin:auto; 
     position:relative;
@@ -16,17 +20,17 @@
     }
   </style>
 </head>
-<body background="Pic/search.png">
+<body>
     <div class ="app">
         <div id="container">
-            <button class ="year" onclick="window.location.href='1yearproducts.html';"></button>
-            <button class ="colour" onclick="window.location.href='4colour.html';" ></button>
-            <button class ="model" onclick="window.location.href='2modelproducts.html';" ></button>
-            <button class ="men" onclick="window.location.href='5menproducts.html';"></button>
-            <button class ="type" onclick="window.location.href='3typeproducts.html';"></button>
-            <button class ="woman" onclick="window.location.href='6womanproducts.html';" ></button>
+            <button class="year" onclick="window.location.href='{% url 'year_products' %}';"></button>
+            <button class="colour" onclick="window.location.href='{% url 'colour_products' %}';"></button>
+            <button class="model" onclick="window.location.href='{% url 'model_products' %}';"></button>
+            <button class="men" onclick="window.location.href='{% url 'men_products' %}';"></button>
+            <button class="type" onclick="window.location.href='{% url 'type_products' %}';"></button>
+            <button class="woman" onclick="window.location.href='{% url 'woman_products' %}';"></button>
             <button class ="advancedsearch" ></button>
-            <button class ="mainsearch" onclick="window.location.href='enmain.html';"></button> 
+            <button class ="mainsearch" onclick="window.location.href='{% url 'en_main' %}';"></button>
         </div>
     </div>
 </body>

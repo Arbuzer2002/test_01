@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8" />
+  {% load static %}
+  <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="{% static 'sneakers_css/homestyle.css'%}">
   <style>
+    body {
+        background-image: url("{% static 'images/Pic/offers.png' %}");
+    }
   #container
   {   
-    top:0px;
+    top:0;
     padding-top:0;
     margin:auto; 
     position:relative;
@@ -16,12 +20,12 @@
     }
   </style>
 </head>
-<body background="Pic/offers.png">
+<body>
     <div class ="app">
         <div id="container">
             <button class ="sale" ></button>
             <button class ="giftbonuses" ></button>
-            <button class ="mainoffers" onclick="window.location.href='enmain.html';"></button>  
+            <button class ="mainoffers" onclick="window.location.href='{% url 'en_main' %}';"></button>
         </div>
     </div>
 </body>
