@@ -2,8 +2,9 @@
 <html>
 	<head>
 		<title>Quiz</title>
+        {% load static %}
 		<meta charset="utf-8">
-		<link rel="stylesheet" type="text/css" href="styles/app.css">
+        <link rel="stylesheet" href="{% static 'sneakers_css/app.css'%}">
 		<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' />
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="mobile-web-app-capable" content="yes">
@@ -12,6 +13,7 @@
 	<body>
 		<div class="wrapper">
 			<main class="main">
+                <button class="backtest" style="font-size: large; margin-top: 0" onclick="window.location.href='{% url 'ru_test' %}';">Назад</button>
 				<div class="quiz__head">
 					<div class="head__content" id="head">HOOOOOOO</div>
 				</div>
@@ -28,9 +30,9 @@
 						</div>
 					</div>
 				</div>
-				
+
 			</main>
 		</div>
-		<script type="text/javascript" src="scripts/app3.js"></script>
+		<script type="text/javascript" src="{% static 'js/app3.js' %}"></script>
 	</body>
 </html>
