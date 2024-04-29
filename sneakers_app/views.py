@@ -184,7 +184,7 @@ def calculate_match_score(description, user_answers):
     match_score = 0
 
     for word in description.split():
-        if word.lower() in [answer.lower() for answer in user_answers]:
+        if word.lower() in [answer.lower() for answer in user_answers['text']]:
             match_score += 1
 
     return match_score
