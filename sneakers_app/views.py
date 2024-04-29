@@ -1,3 +1,6 @@
+import json
+
+from django.http import JsonResponse
 from django.shortcuts import render
 
 from mysite.models import Product, Brand, Category, Color, Gender, FeaturedProduct, UniqueProduct
@@ -148,3 +151,40 @@ def woman_products(request):
         'Унисекс': unisex_products
     }
     return render(request, 'sneakers_app/6womanproducts.html', {'products_by_women': products_by_women})
+
+
+def process_quiz_and_display_products(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        user_answers = data.get('answers')
+        matching_products_ids = find_matching_products(user_answers)
+
+        request.session['matching_product_ids'] = matching_products_ids
+
+        return JsonResponse({'success': True})
+
+    return render(request, 'sneakers_app/quiz1.html')
+
+
+def find_matching_products(user_answers):
+    matching_products = []
+
+    all_products = Product.objects.all()
+
+    for product in all_products:
+        match_score = calculate_match_score(product.description, user_answers)
+
+        if match_score > 0:
+            matching_products.append(product.pk)
+
+    return matching_products
+
+
+def calculate_match_score(description, user_answers):
+    match_score = 0
+
+    for word in description.split():
+        if word.lower() in [answer.lower() for answer in user_answers]:
+            match_score += 1
+
+    return match_score

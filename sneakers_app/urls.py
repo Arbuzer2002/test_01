@@ -27,4 +27,6 @@ urlpatterns = [
     path('men_products', views.men_products, name='men_products'),
     path('type_products', views.type_products, name='type_products'),
     path('woman_products', views.woman_products, name='woman_products'),
+
+    path('process_quiz_and_display_products', views.process_quiz_and_display_products, name='process_quiz_and_display_products'),
 ]

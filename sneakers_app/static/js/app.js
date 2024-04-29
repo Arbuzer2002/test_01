@@ -62,7 +62,7 @@ class Quiz
 	{
 		this.current++;
 		
-		if(this.current >= this.questions.length) 
+		if(this.current-1 >= this.questions.length)
 		{
 			this.End();
 		}
@@ -71,15 +71,26 @@ class Quiz
 	//Если вопросы кончились, этот метод проверит, какой результат получил пользователь
 	End()
 	{
-		for(let i = 0; i < this.results.length; i++)
+		const matchingProducts = this.findMatchingProducts(this.score);
+	}
+
+	findMatchingProducts(score)
+	{
+		const matchingProducts = [];
+
+		// Проходим по всем товарам в базе данных
+		for(let i = 0; i < results.length; i++)
 		{
-			if(this.results[i].Check(this.score))
+			if(results[i].Check(score))
 			{
-				this.result = i;
+				matchingProducts.push(results[i]);
 			}
 		}
+
+		return matchingProducts;
 	}
-} 
+
+}
 
 //Класс, представляющий вопрос
 class Question 
@@ -118,14 +129,7 @@ class Result
 	//Этот метод проверяет, достаточно ли очков набрал пользователь
 	Check(value)
 	{
-		if(this.value <= value)
-		{
-			return true;
-		}
-		else 
-		{
-			return false;
-		}
+		return this.value <= value;
 	}
 }
 
@@ -172,6 +176,26 @@ Update();
 //Обновление теста
 function Update()
 {
+	function displayMatchingProducts(result) {
+		fetch('/app/process_quiz_and_display_products', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({ answers: result }),
+		})
+		.then(response => {
+			if (response.ok) {
+				window.location.href = '/shop';
+			} else {
+				console.error('Ошибка при выполнении запроса:', response.statusText);
+			}
+		})
+		.catch(error => {
+			console.error('Ошибка:', error);
+		});
+	}
+
 	//Проверяем, есть ли ещё вопросы
 	if(quiz.current < quiz.questions.length) 
 	{
@@ -204,8 +228,8 @@ function Update()
 	{
 		//Если это конец, то выводим результат
 		buttonsElem.innerHTML = "";
-		headElem.innerHTML = quiz.results[quiz.result].text;
-		
+		headElem.innerHTML = "";
+		displayMatchingProducts(quiz.results[quiz.result]);
 	}
 }
 
