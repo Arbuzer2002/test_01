@@ -8,7 +8,7 @@ function displayMatchingProducts(result) {
 	})
 	.then(response => {
 		if (response.ok) {
-			window.location.href = '/shop';
+			window.location.href = '/app/test_matching_products';
 		} else {
 			console.error('Ошибка при выполнении запроса:', response.statusText);
 		}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  {% load static %}
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'sneakers_css/products.css'%}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <button class ="step_back" onclick="window.location.href='{% url 'ru_test' %}';"><i class="fa-regular fa-circle-left fa-10x"></i></button>
+  <button class ="home" onclick="window.location.href='{% url 'index' %}';"><i class="fa-solid fa-house fa-10x"></i></button>
+</head>
+<body>
+    {% if matching_products %}
+        <h1 class="header">Найдено {{ matching_products|length }} подходящих товаров</h1>
+        <ul class="container">
+            {% for product in matching_products %}
+                {% if forloop.counter0|divisibleby:3 and not forloop.first %}
+                    </ul>
+                    <ul class="container">
+                {% endif %}
+                <li class="product-card" style="margin-left: 0;">
+                    <div class="product-image">
+                        <img src="/static/images{{ product.image.url }}" alt="Product Image" style="width: 600px; height: 600px"/>
+                    </div>
+                    <div class="imdiz-product__av">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                        <span>В наличии</span>
+                    </div>
+                    <div class="product-details">
+                        <h2 class="product-title">{{ product.name }}</h2>
+                        <h4 class="product-price">${{ product.price }}</h4>
+                        <a href="{% url 'product_detail' product.pk %}"><button class="view-btn">Подробнее</button></a>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>

@@ -188,3 +188,10 @@ def calculate_match_score(description, user_answers):
             match_score += 1
 
     return match_score
+
+
+def test_matching_products(request):
+    matching_products = request.session.get('matching_product_ids')
+    products = Product.objects.filter(id__in=matching_products)
+
+    return render(request, 'sneakers_app/test_matching_products.html', {'matching_products': products})

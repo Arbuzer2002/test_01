@@ -30,12 +30,7 @@ def shop(request):
     sort_by = request.GET.get('sort_by', 'default')
     search_query = request.GET.get('search', '')
 
-    matching_products = request.session.get('matching_product_ids')
-
-    if matching_products is not None:
-        products = Product.objects.filter(id__in=matching_products)
-    else:
-        products = Product.objects.all()
+    products = Product.objects.all()
 
     if search_query:
         products = products.filter(Q(name__icontains=search_query) | Q(description__icontains=search_query))
