@@ -174,7 +174,7 @@ def find_matching_products(user_answers):
     for product in all_products:
         match_score = calculate_match_score(product.description, user_answers)
 
-        if match_score > 0:
+        if match_score > 6:
             matching_products.append(product.pk)
 
     return matching_products
@@ -184,7 +184,7 @@ def calculate_match_score(description, user_answers):
     match_score = 0
 
     for word in description.split():
-        if word.lower() in [answer.lower() for answer in user_answers['text']]:
+        if word in user_answers['text']:
             match_score += 1
 
     return match_score
