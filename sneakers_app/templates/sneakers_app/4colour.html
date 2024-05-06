@@ -15,6 +15,10 @@
             <h1 class="header">{{ color }}</h1>
             <ul class = "container">
                 {% for product in products %}
+                    {% if forloop.counter0|divisibleby:3 and not forloop.first %}
+                        </ul>
+                        <ul class="container">
+                    {% endif %}
                     <li class = "product-card" style="margin-left: 0">
                       <div class = "product-image">
                         <img src="{% static 'images/' %}{{ product.image.url }}" alt="Product Image" style="width: 600px; height: 600px"/>
